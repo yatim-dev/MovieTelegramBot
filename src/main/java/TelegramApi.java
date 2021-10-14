@@ -11,11 +11,11 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.util.Random;
 
-class TelegramApiWrapper extends TelegramLongPollingBot {
+class TelegramApi extends TelegramLongPollingBot {
 
     private BotLogic bot;
 
-    public TelegramApiWrapper(BotLogic bot)
+    public TelegramApi(BotLogic bot)
     {
         this.bot = bot;
     }
@@ -32,24 +32,19 @@ class TelegramApiWrapper extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-            if (!update.hasMessage())
-            {
-                return;
-            }
-            var message = update.getMessage();
-            var currentChatId = message.getChatId();
-            var response = bot.formResponse(currentChatId, message.getText());
-            sendResponse(currentChatId, response);
-
+        var message = update.getMessage();
+        var currentChatId = message.getChatId();
+        var response = bot.formResponse(message.getText());
+        sendResponse(currentChatId, response);
     }
 
     @SneakyThrows
-    private void sendResponse(Long chatId, String msgText)
-    {
-        var sender = new SendMessage();
-        sender.setChatId(chatId.toString());
-        sender.setText(msgText);
-        execute(sender);
+    private void sendResponse(Long chatId, String outText) {
+        execute(SendMessage.builder()
+                .chatId(chatId.toString())
+                .text(outText)
+                .build()
+        );
     }
 
 
