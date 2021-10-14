@@ -1,5 +1,6 @@
 public class MovieRepository {
-    MovieRepositorySetting[] movieRepositoryArray = new MovieRepositorySetting[]{
+
+    private final MovieRepositorySetting[] movieRepositoryArray = new MovieRepositorySetting[]{
             new MovieRepositorySetting(
                     "Унесённые призраками",
                     "Аниме",
