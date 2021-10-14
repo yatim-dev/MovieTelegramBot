@@ -41,19 +41,29 @@ public class MovieRepositorySetting {
         return category;
     }
 
+    public void setCategory(String userInputCategory) { this.category = userInputCategory;}
+
     public Integer getYearOfIssue(){
         return yearOfIssue;
     }
+
+    public void setYearOfIssue(Integer userInputYearOfIssue) { this.yearOfIssue = userInputYearOfIssue;}
 
     public String getCountry(){
         return country;
     }
 
+    public void setCountry(String userInputCountry) { this.country = userInputCountry;}
+
     public Double getRating(){
         return rating;
     }
 
+    public void setRating(Double userInputRating) { this.rating = userInputRating;}
+
     public String getDirector(){
         return director;
     }
+
+    public void setDirector(String userInputDirector) { this.director = userInputDirector;}
 }
