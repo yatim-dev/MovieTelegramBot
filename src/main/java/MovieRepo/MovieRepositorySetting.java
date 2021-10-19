@@ -1,3 +1,5 @@
+package MovieRepo;
+
 public class MovieRepositorySetting {
     private String title;
     private String genre;

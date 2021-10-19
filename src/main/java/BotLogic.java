@@ -12,13 +12,10 @@ public class BotLogic {
                     " Чтобы узнать больше информации напишите /help";
         }else if(text.equals("/help")){
             return "Напишите, какой фильм хотите найти";
-        } else {
-            new UserCommunication().UserData(text);
-            /*var a = new MovieRepositorySetting();
-            a.setDirector(text);
-            a.setCategory(text);
-*/
-            return "продолжай";
         }
+        //var a = new MovieRepositorySetting();
+        //a.setDirector(text);
+
+        return "продолжай";
     }
 }
