@@ -1,3 +1,7 @@
+package MovieRepo;
+
+import MovieRepo.MovieRepositorySetting;
+
 public class MovieRepository {
 
     private final MovieRepositorySetting[] movieRepositoryArray = new MovieRepositorySetting[]{
