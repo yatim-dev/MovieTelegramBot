@@ -1,6 +1,6 @@
 package Database;
 
-import Enums.ChatState;
+import java.util.*;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
@@ -22,16 +22,16 @@ public class Database {
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
                         .register(
-                                ClassModel.builder(Userr.class).enableDiscriminator(true).build()
+                                ClassModel.builder(User.class).enableDiscriminator(true).build()
                         ).automatic(true)
                         .build()
                 )
         );
 
-        MongoCollection<Userr> collection = new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
+        MongoCollection<User> collection = new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
                 .getDatabase("TelegramBotBD")
-                .withCodecRegistry(codecRegistry).getCollection("UserInfo", Userr.class);
+                .withCodecRegistry(codecRegistry).getCollection("UserInfo", User.class);
 
-        collection.insertOne(new Userr(33, START, "a", "b"));
+        collection.insertOne(new User(33, START, "a", "b"));
     }
 }

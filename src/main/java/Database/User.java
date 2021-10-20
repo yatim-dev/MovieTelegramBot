@@ -2,14 +2,14 @@ package Database;
 
 import Enums.ChatState;
 
-public class Userr
+public class User
 {
     private long chatId;
     private ChatState chatState;
     private String lastMessage;
     private String currentMessage;
 
-    public Userr(long chatId, ChatState chatState, String lastMessage, String currentMessage) {
+    public User(long chatId, ChatState chatState, String lastMessage, String currentMessage) {
         this.chatId = chatId;
         this.chatState = chatState;
         this.lastMessage = lastMessage;
