@@ -1,10 +1,10 @@
-package MovieRepo;
+package Database.MovieRepository;
 
-import MovieRepo.MovieRepositorySetting;
+import Database.MovieRepository.MovieRepositorySetting;
 
 public class MovieRepository {
 
-    private final MovieRepositorySetting[] movieRepositoryArray = new MovieRepositorySetting[]{
+    public MovieRepositorySetting[] movieRepositoryArray = new MovieRepositorySetting[]{
             new MovieRepositorySetting(
                     "Унесённые призраками",
                     "Аниме",

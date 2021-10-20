@@ -1,21 +1,21 @@
-package Database;
+package Database.UserInfo;
 
-import java.util.*;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
+
+import java.util.logging.Filter;
 //import org.telegram.telegrambots.meta.api.objects.User;
 
-import static Enums.ChatState.START;
 
-public class Database {
+public class DatabaseOfUserInfo {
 
     public void initialization(){
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
@@ -32,6 +32,11 @@ public class Database {
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("UserInfo", User.class);
 
-        collection.insertOne(new User(33, START, "a", "b"));
+        collection.insertOne(new User(33, ChatState.CHOICE_CATEGORY, "Аниме", null, null,
+                null, null, null, null));
+
+        collection.updateOne(new Document("chatId", 33),
+                new Document("$set", new Document("currentMessage", "Portable Space Ball")));
+
     }
 }
