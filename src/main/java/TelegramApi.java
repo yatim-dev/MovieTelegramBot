@@ -34,7 +34,7 @@ class TelegramApi extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         var message = update.getMessage();
         var currentChatId = message.getChatId();
-        var response = bot.formResponse(message.getText());
+        var response = bot.formResponse(currentChatId, message.getText());
         sendResponse(currentChatId, response);
     }
 

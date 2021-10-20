@@ -2,6 +2,7 @@ package Database.UserInfo;
 
 public enum ChatState {
     START,
+    NEW_ROUND,
     ROUND,
     RESULT,
     CHOICE_GENRE,

@@ -1,7 +1,6 @@
 package Database.UserInfo;
 
-public class User
-{
+public class User implements AbstractUser {
     private long chatId;
     private ChatState chatState;
     private String currentMessage;
@@ -24,6 +23,10 @@ public class User
         this.country = country;
         this.rating = rating;
         this.director = director;
+    }
+
+    public User(Long chatId){
+        this.chatId = chatId;
     }
 
     public long getChatId() {
