@@ -10,33 +10,55 @@ import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 
-import java.util.logging.Filter;
-//import org.telegram.telegrambots.meta.api.objects.User;
+@BsonDiscriminator
 
 
 public class DatabaseOfUserInfo {
+
+    MongoCollection<User> collection;
 
     public void initialization(){
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
                         .register(
-                                ClassModel.builder(User.class).enableDiscriminator(true).build()
+                                //ClassModel.builder(AbstractUser.class).enableDiscriminator(false).build(),
+                                ClassModel.builder(User.class).enableDiscriminator(false).build()
                         ).automatic(true)
                         .build()
                 )
         );
 
-        MongoCollection<User> collection = new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
+        collection = new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("UserInfo", User.class);
 
-        collection.insertOne(new User(33, ChatState.CHOICE_CATEGORY, "Аниме", null, null,
+        //collection.insertOne(new User(33, ChatState.CHOICE_CATEGORY, "Аниме", null, null,
+        //       null, null, null, null));
+
+        //collection.updateOne(new Document("chatId", 33),
+        //        new Document("$set", new Document("genre", "Онимэ")));
+
+        //AbstractUser user = collection.find(Filters.eq("chatId", 32)).first();
+        //if (user != null) {
+        //    System.out.println(user);
+        //} else {
+            //collection.insertOne(new User(32, null, null, null, null, null, null, null, null));
+        //}
+    }
+
+    public void setId(long chatId){
+        var user = collection.find(Filters.eq("chatId", chatId)).first();
+        if(user != null)
+            collection.deleteOne(new Document("chatId", chatId));
+        collection.insertOne(new User(chatId, ChatState.START, null, null, null,
                 null, null, null, null));
+    }
 
-        collection.updateOne(new Document("chatId", 33),
-                new Document("$set", new Document("currentMessage", "Portable Space Ball")));
-
+    public AbstractUser getUser(Long chatId) {
+        AbstractUser user = collection.find(Filters.eq("chatId", chatId)).first();
+        return user;
     }
 }
