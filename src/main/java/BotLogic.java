@@ -1,12 +1,6 @@
 import Database.MovieRepository.DatabaseOfMovieRepo;
 import Database.UserInfo.CommunicationWithUser;
 import Database.UserInfo.DatabaseOfUserInfo;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
-//import org.telegram.telegrambots.meta.api.objects.User;
-
-import java.util.Random;
 
 public class BotLogic {
 
@@ -24,11 +18,10 @@ public class BotLogic {
             case "/help":
                 return "Напишите, какой фильм хотите найти";
             case "/new_round":
-
-                break;
+                userInfo.setId(chatId);
+                return "ну погнали сначала";
             default:
                 return communicationWithUser.communication(chatId, userInfo, MovieRepo,text);
         }
-        return "incorrect input";
     }
 }

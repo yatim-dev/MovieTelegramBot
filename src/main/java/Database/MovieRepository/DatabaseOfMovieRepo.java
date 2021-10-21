@@ -34,6 +34,11 @@ public class DatabaseOfMovieRepo {
 
     public String findMovie(User user){
         var filter = Filters.and(Filters.eq("genre", user.getGenre()), Filters.eq("country", user.getCountry()));
-        return collectionOfMovie.find(filter).first().getTitle();
+        if(collectionOfMovie.find(filter).first() == null){
+            return "Такого нету...((( Начни поиск сначала /new_round";
+        }else{
+            return collectionOfMovie.find(filter).first().getTitle();
+        }
+
     }
 }

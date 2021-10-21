@@ -22,7 +22,6 @@ public class DatabaseOfUserInfo {
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
                         .register(
-                                ClassModel.builder(AbstractUser.class).enableDiscriminator(true).build(),
                                 ClassModel.builder(User.class).enableDiscriminator(true).build()
                         ).automatic(true)
                         .build()
@@ -32,19 +31,6 @@ public class DatabaseOfUserInfo {
         collection = new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("UserInfo", User.class);
-
-        //collection.insertOne(new User(33, ChatState.CHOICE_CATEGORY, "Аниме", null, null,
-        //       null, null, null, null));
-
-        //collection.updateOne(new Document("chatId", 33),
-        //        new Document("$set", new Document("genre", "Онимэ")));
-
-
-        //if (user != null) {
-        //    System.out.println(user);
-        //} else {
-          //collection.insertOne(new User(32, null, null, null, null, null, null, null, null));
-        //}
     }
 
     public void setId(long chatId){

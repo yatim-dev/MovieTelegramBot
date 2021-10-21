@@ -27,7 +27,6 @@ public class CommunicationWithUser {
             return movieRepo.findMovie(user);
         }
 
-
         return "";
     }
 }

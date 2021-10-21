@@ -12,7 +12,5 @@ public class Main {
         var telegramWrapper = new TelegramApi(bot);
         var botsApi = new TelegramBotsApi(DefaultBotSession.class);
         botsApi.registerBot(telegramWrapper);
-        var databaseOfMovieRepo = new DatabaseOfMovieRepo();
-        databaseOfMovieRepo.initialization();
     }
 }

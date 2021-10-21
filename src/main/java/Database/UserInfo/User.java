@@ -1,6 +1,6 @@
 package Database.UserInfo;
 
-public class User implements AbstractUser {
+public class User {
     private long chatId;
     private ChatState chatState;
     private String currentMessage;
