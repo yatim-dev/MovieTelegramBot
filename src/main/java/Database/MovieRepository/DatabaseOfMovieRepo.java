@@ -1,9 +1,11 @@
 package Database.MovieRepository;
 
+import Database.UserInfo.User;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
@@ -28,8 +30,10 @@ public class DatabaseOfMovieRepo {
                 new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("MovieRepository", MovieRepositorySetting.class);
+    }
 
-
-
+    public String findMovie(User user){
+        var filter = Filters.and(Filters.eq("genre", user.getGenre()), Filters.eq("country", user.getCountry()));
+        return collectionOfMovie.find(filter).first().getTitle();
     }
 }

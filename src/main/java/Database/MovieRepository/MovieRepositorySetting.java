@@ -20,6 +20,9 @@ public class MovieRepositorySetting {
         this.director = director;
     }
 
+    public MovieRepositorySetting() {
+    }
+
     public String getTitle() {
         return title;
     }

@@ -4,6 +4,7 @@ public enum ChatState {
     START,
     NEW_ROUND,
     ROUND,
+    HELP,
     RESULT,
     CHOICE_GENRE,
     CHOICE_CATEGORY,

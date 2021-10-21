@@ -1,5 +1,6 @@
 package Database.UserInfo;
 
+import Database.MovieRepository.DatabaseOfMovieRepo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
@@ -38,11 +39,11 @@ public class DatabaseOfUserInfo {
         //collection.updateOne(new Document("chatId", 33),
         //        new Document("$set", new Document("genre", "Онимэ")));
 
-        //AbstractUser user = collection.find(Filters.eq("chatId", 32)).first();
+
         //if (user != null) {
         //    System.out.println(user);
         //} else {
-            //collection.insertOne(new User(32, null, null, null, null, null, null, null, null));
+          //collection.insertOne(new User(32, null, null, null, null, null, null, null, null));
         //}
     }
 
@@ -57,6 +58,22 @@ public class DatabaseOfUserInfo {
         User user = collection.find(Filters.eq("chatId", chatId)).first();
         return user;
     }
+
+    public void setGenre(User user){
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("genre", user.getGenre())));
+    }
+
+    public void setCountry(User user){
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("country", user.getCountry())));
+    }
+
+    public void setChatState(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("chatState", user.getChatState().toString())));
+    }
+
 
 
 }
