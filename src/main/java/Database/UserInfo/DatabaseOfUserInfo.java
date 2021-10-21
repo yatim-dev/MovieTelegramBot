@@ -12,9 +12,6 @@ import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 
-@BsonDiscriminator
-
-
 public class DatabaseOfUserInfo {
 
     MongoCollection<User> collection;
@@ -24,8 +21,8 @@ public class DatabaseOfUserInfo {
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
                         .register(
-                                //ClassModel.builder(AbstractUser.class).enableDiscriminator(false).build(),
-                                ClassModel.builder(User.class).enableDiscriminator(false).build()
+                                ClassModel.builder(AbstractUser.class).enableDiscriminator(true).build(),
+                                ClassModel.builder(User.class).enableDiscriminator(true).build()
                         ).automatic(true)
                         .build()
                 )
