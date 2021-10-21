@@ -25,6 +25,11 @@ public class User implements AbstractUser {
         this.director = director;
     }
 
+    public User(long chatId, ChatState chatState) {
+        this.chatId = chatId;
+        this.chatState = chatState;
+    }
+
     public User(){}
 
     public long getChatId() {

@@ -24,7 +24,7 @@ public class BotLogic {
 
                 break;
             default:
-                return communicationWithUser.communication(chatId, text);
+                return communicationWithUser.communication(chatId, userInfo, text);
         }
         return "uncorrent input";
     }

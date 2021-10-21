@@ -50,12 +50,13 @@ public class DatabaseOfUserInfo {
         var user = collection.find(Filters.eq("chatId", chatId)).first();
         if(user != null)
             collection.deleteOne(new Document("chatId", chatId));
-        collection.insertOne(new User(chatId, ChatState.START, null, null, null,
-                null, null, null, null));
+        collection.insertOne(new User(chatId, ChatState.START));
     }
 
-    public AbstractUser getUser(Long chatId) {
-        AbstractUser user = collection.find(Filters.eq("chatId", chatId)).first();
+    public User getUser(DatabaseOfUserInfo userInfo, Long chatId) {
+        User user = collection.find(Filters.eq("chatId", chatId)).first();
         return user;
     }
+
+
 }
