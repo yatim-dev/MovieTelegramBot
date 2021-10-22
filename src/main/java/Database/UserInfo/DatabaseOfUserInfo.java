@@ -17,7 +17,7 @@ public class DatabaseOfUserInfo {
 
     MongoCollection<User> collection;
 
-    public void initialization(){
+    public void initialization() {
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
@@ -33,26 +33,15 @@ public class DatabaseOfUserInfo {
                 .withCodecRegistry(codecRegistry).getCollection("UserInfo", User.class);
     }
 
-    public void setId(long chatId){
+    public User getUser(DatabaseOfUserInfo userInfo, Long chatId) {
+        return collection.find(Filters.eq("chatId", chatId)).first();
+    }
+
+    public void setId(long chatId) {
         var user = collection.find(Filters.eq("chatId", chatId)).first();
-        if(user != null)
+        if (user != null)
             collection.deleteOne(new Document("chatId", chatId));
         collection.insertOne(new User(chatId, ChatState.START));
-    }
-
-    public User getUser(DatabaseOfUserInfo userInfo, Long chatId) {
-        User user = collection.find(Filters.eq("chatId", chatId)).first();
-        return user;
-    }
-
-    public void setGenre(User user){
-        collection.updateOne(new Document("chatId", user.getChatId()),
-                new Document("$set", new Document("genre", user.getGenre())));
-    }
-
-    public void setCountry(User user){
-        collection.updateOne(new Document("chatId", user.getChatId()),
-                new Document("$set", new Document("country", user.getCountry())));
     }
 
     public void setChatState(User user) {
@@ -60,6 +49,40 @@ public class DatabaseOfUserInfo {
                 new Document("$set", new Document("chatState", user.getChatState().toString())));
     }
 
+    public void setGenre(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("genre", user.getGenre())));
+    }
 
+    public void setCategory(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("category", user.getCategory())));
+    }
 
+    public void setYearOfIssue(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("yearOfIssue", user.getYearOfIssue().toString())));
+    }
+
+    public void setCountry(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("country", user.getCountry())));
+    }
+
+    public void setRating(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("rating", user.getRating().toString())));
+    }
+
+    public void setDirector(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("director", user.getDirector())));
+    }
+    /*
+    CurrentMessage - поле отсутствует у класса User, но если нужно будет, то допилим.
+    public void setCurrentMessage(User user) {
+        collection.updateOne(new Document("chatId", user.getChatId()),
+                new Document("$set", new Document("currentMessage", user.getCurrentMessage())));
+    }
+     */
 }
