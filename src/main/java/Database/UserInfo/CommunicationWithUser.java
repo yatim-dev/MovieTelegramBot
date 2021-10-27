@@ -1,28 +1,26 @@
 package Database.UserInfo;
 
 
-import Database.MovieRepository.DatabaseOfMovieRepo;
+import Database.MovieRepository.MovieRepo;
 
 public class CommunicationWithUser {
 
-    public String communication(Long chatId, DatabaseOfUserInfo userInfo, DatabaseOfMovieRepo movieRepo, String text){
-        User user = userInfo.getUser(userInfo, chatId);
-        switch (user.getChatState()){
+    public String communication(Long chatId, UserRepo chatInfo, MovieRepo movieRepo, String text){
+        Chat chat = chatInfo.getUser(chatInfo, chatId);
+        switch (chat.getChatState()){
             case START:
-                user.setChatState(ChatState.CHOICE_GENRE);
-                userInfo.setChatState(user);
-                user.setGenre(text);
-                userInfo.setGenre(user);
+                chat.setChatState(ChatState.CHOICE_GENRE);
+                chat.setGenre(text);
+                chatInfo.update(chat);
                 return "Выберите страну";
             case CHOICE_GENRE:
-                user.setChatState(ChatState.CHOICE_COUNTRY);
-                userInfo.setChatState(user);
-                user.setCountry(text);
-                userInfo.setCountry(user);
-                user.setChatState(ChatState.RESULT); //end of search
-                userInfo.setChatState(user);
+                chat.setChatState(ChatState.CHOICE_COUNTRY);
+                chat.setCountry(text);
+                chat.setChatState(ChatState.RESULT); //end of search
+                chatInfo.update(chat);
             case RESULT:
-                return movieRepo.findMovie(user); //метод гавно
+                chatInfo.update(chat);
+                return movieRepo.findMovie(chat); //метод гавно
             default:
                 return "Some exception";
 

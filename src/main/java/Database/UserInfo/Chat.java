@@ -1,6 +1,6 @@
 package Database.UserInfo;
 
-public class User {
+public class Chat {
     private long chatId;
     private ChatState chatState;
     private String currentMessage;
@@ -11,7 +11,7 @@ public class User {
     private Double rating;
     private String director;
 
-    public User(long chatId, ChatState chatState,
+    public Chat(long chatId, ChatState chatState,
                 String currentMessage, String genre, String category,
                 Integer yearOfIssue, String country, Double rating, String director) {
         this.chatId = chatId;
@@ -25,12 +25,12 @@ public class User {
         this.director = director;
     }
 
-    public User(long chatId, ChatState chatState) {
+    public Chat(long chatId, ChatState chatState) {
         this.chatId = chatId;
         this.chatState = chatState;
     }
 
-    public User(){}
+    public Chat(){}
 
     public long getChatId() {
         return chatId;

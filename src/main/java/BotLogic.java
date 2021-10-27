@@ -1,15 +1,16 @@
-import Database.MovieRepository.DatabaseOfMovieRepo;
+import Database.MovieRepository.MovieRepo;
 import Database.UserInfo.CommunicationWithUser;
-import Database.UserInfo.DatabaseOfUserInfo;
+import Database.UserInfo.UserRepo;
 
 public class BotLogic {
 
+    UserRepo userInfo = new UserRepo();
+    MovieRepo movieRepo = new MovieRepo();
+
     public String formResponse(long chatId, String text) {
-        DatabaseOfUserInfo userInfo = new DatabaseOfUserInfo();
+
         CommunicationWithUser communicationWithUser = new CommunicationWithUser();
-        DatabaseOfMovieRepo MovieRepo = new DatabaseOfMovieRepo();
-        MovieRepo.initialization();
-        userInfo.initialization();
+
         switch (text){
             case "/start":
                 userInfo.setId(chatId);
@@ -21,7 +22,7 @@ public class BotLogic {
                 userInfo.setId(chatId);
                 return "ну погнали сначала";
             default:
-                return communicationWithUser.communication(chatId, userInfo, MovieRepo,text);
+                return communicationWithUser.communication(chatId, userInfo, movieRepo, text);
         }
     }
 }

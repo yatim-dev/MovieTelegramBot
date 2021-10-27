@@ -1,5 +1,3 @@
-import Database.MovieRepository.DatabaseOfMovieRepo;
-import Database.UserInfo.DatabaseOfUserInfo;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;

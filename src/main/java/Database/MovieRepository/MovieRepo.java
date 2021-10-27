@@ -1,6 +1,6 @@
 package Database.MovieRepository;
 
-import Database.UserInfo.User;
+import Database.UserInfo.Chat;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
@@ -11,33 +11,33 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
-public class DatabaseOfMovieRepo {
+public class MovieRepo {
 
-    MongoCollection<MovieRepositorySetting> collectionOfMovie;
+    MongoCollection<Movie> MovieRepo;
 
-    public void initialization(){
+    public MovieRepo(){
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
                         .register(
-                                ClassModel.builder(MovieRepositorySetting.class).enableDiscriminator(true).build()
+                                ClassModel.builder(Movie.class).enableDiscriminator(true).build()
                         ).automatic(true)
                         .build()
                 )
         );
 
-        collectionOfMovie =
+        MovieRepo =
                 new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
                 .getDatabase("TelegramBotBD")
-                .withCodecRegistry(codecRegistry).getCollection("MovieRepository", MovieRepositorySetting.class);
+                .withCodecRegistry(codecRegistry).getCollection("MovieRepository", Movie.class);
     }
 
-    public String findMovie(User user){
-        var filter = Filters.and(Filters.eq("genre", user.getGenre()), Filters.eq("country", user.getCountry()));
-        if(collectionOfMovie.find(filter).first() == null){
+    public String findMovie(Chat searchCriteria){ //////?????
+        var filter = Filters.and(Filters.eq("genre", searchCriteria.getGenre()), Filters.eq("country", searchCriteria.getCountry()));
+        if(MovieRepo.find(filter).first() == null){
             return "Такого нет...((( Начни поиск сначала /new_round";
         }else{
-            return collectionOfMovie.find(filter).first().getTitle();
+            return MovieRepo.find(filter).first().getTitle();
         }
 
     }

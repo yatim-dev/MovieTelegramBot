@@ -1,6 +1,6 @@
 package Database.MovieRepository;
 
-public class MovieRepositorySetting {
+public class Movie {
     private String title;
     private String genre;
     private String category;
@@ -9,8 +9,8 @@ public class MovieRepositorySetting {
     private Double rating;
     private String director;
 
-    public MovieRepositorySetting(String title, String genre, String category,
-                                  Integer yearOfIssue, String country, Double rating, String director) {
+    public Movie(String title, String genre, String category,
+                 Integer yearOfIssue, String country, Double rating, String director) {
         this.title = title;
         this.genre = genre;
         this.category = category;
@@ -20,7 +20,7 @@ public class MovieRepositorySetting {
         this.director = director;
     }
 
-    public MovieRepositorySetting() {
+    public Movie() {
     }
 
     public String getTitle() {

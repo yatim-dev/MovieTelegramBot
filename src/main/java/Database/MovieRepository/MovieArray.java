@@ -1,11 +1,9 @@
 package Database.MovieRepository;
 
-import Database.MovieRepository.MovieRepositorySetting;
+public class MovieArray {
 
-public class MovieRepository {
-
-    public MovieRepositorySetting[] movieRepositoryArray = new MovieRepositorySetting[]{
-            new MovieRepositorySetting(
+    public Movie[] movieRepositoryArray = new Movie[]{
+            new Movie(
                     "Унесённые призраками",
                     "Аниме",
                     "Полнометражка",
@@ -14,7 +12,7 @@ public class MovieRepository {
                     8.4,
                     "Хаяо Миядзаки"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Ходячий замок",
                     "Аниме",
                     "Полнометражка",
@@ -23,7 +21,7 @@ public class MovieRepository {
                     8.3,
                     "Хаяо Миядзаки"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Твоё имя",
                     "Аниме",
                     "Полнометражка",
@@ -32,7 +30,7 @@ public class MovieRepository {
                     8.3,
                     "Макото Синкай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Зелёная книга",
                     "Биография",
                     "Полнометражка",
@@ -41,7 +39,7 @@ public class MovieRepository {
                     8.4,
                     "Питер Фаррелли"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Поймай меня, если сможешь",
                     "Криминал",
                     "Полнометражка",
@@ -50,7 +48,7 @@ public class MovieRepository {
                     8.5,
                     "Стивен Спилберг"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Игры разума",
                     "Драма",
                     "Полнометражка",
@@ -59,7 +57,7 @@ public class MovieRepository {
                     8.6,
                     "Рон Ховард"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Начало",
                     "Фантастика",
                     "Полнометражка",
@@ -68,7 +66,7 @@ public class MovieRepository {
                     8.7,
                     "Кристофер Нолан"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Брат 2",
                     "Боевик",
                     "Полнометражка",
@@ -77,7 +75,7 @@ public class MovieRepository {
                     8.1,
                     "Алексей Балабанов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Аватар",
                     "Фантастика",
                     "Полнометражка",
@@ -86,7 +84,7 @@ public class MovieRepository {
                     7.9,
                     "Джеймс Кэмерон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Джанго освобожденный",
                     "Вестерн",
                     "Полнометражка",
@@ -95,7 +93,7 @@ public class MovieRepository {
                     8.2,
                     "Квентин Тарантино"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Омерзительная восьмерка",
                     "Вестерн",
                     "Полнометражка",
@@ -104,7 +102,7 @@ public class MovieRepository {
                     7.9,
                     "Квентин Тарантино"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Выживший",
                     "Приключения",
                     "Полнометражка",
@@ -113,7 +111,7 @@ public class MovieRepository {
                     7.8,
                     "Алехандро Гонсалес Иньярриту"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "В бой идут одни \"старики\"",
                     "Военный",
                     "Полнометражка",
@@ -122,7 +120,7 @@ public class MovieRepository {
                     8.7,
                     "Леонид Быков"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Пианист",
                     "Военный",
                     "Полнометражка",
@@ -131,7 +129,7 @@ public class MovieRepository {
                     8.5,
                     "Роман Полански"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Спасти рядового Райана",
                     "Военный",
                     "Полнометражка",
@@ -140,7 +138,7 @@ public class MovieRepository {
                     8.2,
                     "Стивен Спилберг"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Остров проклятых",
                     "Детектив",
                     "Полнометражка",
@@ -149,7 +147,7 @@ public class MovieRepository {
                     8.5,
                     "Мартин Скорсезе"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Достать ножи",
                     "Детектив",
                     "Полнометражка",
@@ -158,7 +156,7 @@ public class MovieRepository {
                     8.0,
                     "Райан Джонсон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Шерлок",
                     "Детектив",
                     "Сериал",
@@ -167,7 +165,7 @@ public class MovieRepository {
                     8.9,
                     "Пол МакГиган"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Трое из Простоквашино",
                     "Детский",
                     "Короткометражка",
@@ -176,7 +174,7 @@ public class MovieRepository {
                     8.8,
                     "Владимир Попов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Смешарики",
                     "Детский",
                     "Мультсериал",
@@ -185,7 +183,7 @@ public class MovieRepository {
                     7.3,
                     "Илья Попов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Фиксики",
                     "Детский",
                     "Мультсериал",
@@ -194,7 +192,7 @@ public class MovieRepository {
                     6.9,
                     "Василий Бедошвили"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Романовы",
                     "Документальный",
                     "Сериал",
@@ -203,7 +201,7 @@ public class MovieRepository {
                     8.9,
                     "Максим Беспалый"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Великая война",
                     "Документальный",
                     "Сериал",
@@ -212,7 +210,7 @@ public class MovieRepository {
                     8.8,
                     "Анна Граждан"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Следствие вели",
                     "Документальный",
                     "Сериал",
@@ -221,7 +219,7 @@ public class MovieRepository {
                     7.9,
                     "Дмитрий Докучаев"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Зелёная книга",
                     "Драма",
                     "Полнометражка",
@@ -230,7 +228,7 @@ public class MovieRepository {
                     8.4,
                     "Питер Фаррелли"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Игры разума",
                     "Драма",
                     "Полнометражка",
@@ -239,7 +237,7 @@ public class MovieRepository {
                     8.6,
                     "Рон Ховард"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Остров проклятых",
                     "Драма",
                     "Полнометражка",
@@ -248,7 +246,7 @@ public class MovieRepository {
                     8.5,
                     "Мартин Скорсезе"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Топ-модель по-американски",
                     "Игра",
                     "Сериал",
@@ -257,7 +255,7 @@ public class MovieRepository {
                     7.4,
                     "Тони Кролл"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Проект Подиум",
                     "Игра",
                     "Сериал",
@@ -266,7 +264,7 @@ public class MovieRepository {
                     7.8,
                     "Крэйг Спирко"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Адская кухня",
                     "Игра",
                     "Сериал",
@@ -275,7 +273,7 @@ public class MovieRepository {
                     7.3,
                     "Марк В. Роден"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Романовы",
                     "История",
                     "Сериал",
@@ -284,7 +282,7 @@ public class MovieRepository {
                     8.9,
                     "Максим Беспалый"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Великая война",
                     "История",
                     "Сериал",
@@ -293,7 +291,7 @@ public class MovieRepository {
                     8.8,
                     "Анна Граждан"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Титаник",
                     "История",
                     "Полнометражка",
@@ -302,7 +300,7 @@ public class MovieRepository {
                     8.4,
                     "Джеймс Кэмерон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Джентельмены",
                     "Комедия",
                     "Полнометражка",
@@ -311,7 +309,7 @@ public class MovieRepository {
                     8.5,
                     "Гай Ричи"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Иван Васильевич меняет профессию",
                     "Комедия",
                     "Полнометражка",
@@ -320,7 +318,7 @@ public class MovieRepository {
                     8.8,
                     "Леонид Гайдай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Бриллиантовая рука",
                     "Комедия",
                     "Полнометражка",
@@ -329,7 +327,7 @@ public class MovieRepository {
                     8.5,
                     "Леонид Гайдай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Трое из Простоквашино",
                     "Короткометражка",
                     "Короткометражка",
@@ -338,7 +336,7 @@ public class MovieRepository {
                     8.8,
                     "Владимир Попов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Самогонщики",
                     "Короткометражка",
                     "Короткометражка",
@@ -347,7 +345,7 @@ public class MovieRepository {
                     8.3,
                     "Леонид Гайлай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Наваждение",
                     "Короткометражка",
                     "Короткометражка",
@@ -356,7 +354,7 @@ public class MovieRepository {
                     8.8,
                     "Леонид Гайлай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Джентельмены",
                     "Криминал",
                     "Полнометражка",
@@ -365,7 +363,7 @@ public class MovieRepository {
                     8.5,
                     "Гай Ричи"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Брат 2",
                     "Криминал",
                     "Полнометражка",
@@ -374,7 +372,7 @@ public class MovieRepository {
                     8.1,
                     "Алексей Балабанов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Достать ножи",
                     "Криминал",
                     "Полнометражка",
@@ -383,7 +381,7 @@ public class MovieRepository {
                     8.0,
                     "Райан Джонсон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Твоё имя",
                     "Мелодрама",
                     "Полнометражка",
@@ -392,7 +390,7 @@ public class MovieRepository {
                     8.3,
                     "Макото Синкай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Титаник",
                     "Мелодрама",
                     "Полнометражка",
@@ -401,7 +399,7 @@ public class MovieRepository {
                     8.4,
                     "Джеймс Кэмерон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Друзья",
                     "Мелодрама",
                     "Сериал",
@@ -410,7 +408,7 @@ public class MovieRepository {
                     9.2,
                     "Гари Хэлворсон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Пианист",
                     "Музыка",
                     "Полнометражка",
@@ -419,7 +417,7 @@ public class MovieRepository {
                     8.5,
                     "Роман Полански"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Ла-Ла Ленд",
                     "Музыка",
                     "Полнометражка",
@@ -428,7 +426,7 @@ public class MovieRepository {
                     7.9,
                     "Дэмьен Шазелл"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Трое из Простоквашино",
                     "Мультфильм",
                     "Короткометражка",
@@ -437,7 +435,7 @@ public class MovieRepository {
                     8.8,
                     "Владимир Попов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Смешарики",
                     "Мультфильм",
                     "Сериал",
@@ -446,7 +444,7 @@ public class MovieRepository {
                     7.3,
                     "Денис Чернов"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Холодное сердце",
                     "Мультфильм",
                     "Полнометражка",
@@ -455,7 +453,7 @@ public class MovieRepository {
                     7.8,
                     "Крис Бак"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Алладин",
                     "Мюзикл",
                     "Полнометражка",
@@ -464,7 +462,7 @@ public class MovieRepository {
                     7.3,
                     "Гай Ричи"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Ла-Ла Ленд",
                     "Мюзикл",
                     "Полнометражка",
@@ -473,7 +471,7 @@ public class MovieRepository {
                     7.9,
                     "Дэиьен Шазелл"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Кошмар перед Рождеством",
                     "Мюзикл",
                     "Полнометражка",
@@ -482,7 +480,7 @@ public class MovieRepository {
                     8.0,
                     "Генри Селик"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Выживший",
                     "Приключения",
                     "Полнометражка",
@@ -491,7 +489,7 @@ public class MovieRepository {
                     7.8,
                     "Алехандро Гонсалес Иньярриту"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Иван Васильевич меняет профессию",
                     "Приключения",
                     "Полнометражка",
@@ -500,7 +498,7 @@ public class MovieRepository {
                     8.8,
                     "Леонид Гайдай"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Рапунцель: запутанная история",
                     "Приключения",
                     "Полнометражка",
@@ -509,7 +507,7 @@ public class MovieRepository {
                     7.9,
                     "Нэйтан Грено"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Топ-модель по-американски",
                     "Реальное ТВ",
                     "Сериал",
@@ -518,7 +516,7 @@ public class MovieRepository {
                     7.4,
                     "Тони Кролл"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Проект Подиум",
                     "Реальное ТВ",
                     "Сериал",
@@ -527,7 +525,7 @@ public class MovieRepository {
                     7.8,
                     "Крэйг Спирко"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Адская кухня",
                     "Реальное ТВ",
                     "Сериал",
@@ -536,7 +534,7 @@ public class MovieRepository {
                     7.3,
                     "Марк В. Роден"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Алладин",
                     "Семейный",
                     "Полнометражка",
@@ -545,7 +543,7 @@ public class MovieRepository {
                     7.3,
                     "Гай Ричи"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Чарли и шоколадная фабрика",
                     "Семейный",
                     "Полнометражка",
@@ -554,7 +552,7 @@ public class MovieRepository {
                     7.6,
                     "Тим Бёртон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Рапунцель: запутанная история",
                     "Семейный",
                     "Полнометражка",
@@ -563,7 +561,7 @@ public class MovieRepository {
                     7.9,
                     "Нэйтан Грено"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Начало",
                     "Триллер",
                     "Полнометражка",
@@ -572,7 +570,7 @@ public class MovieRepository {
                     8.7,
                     "Кристофер Нолан"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Шерлок",
                     "Триллер",
                     "Сериал",
@@ -581,7 +579,7 @@ public class MovieRepository {
                     8.9,
                     "Пол МакГиган"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Аватар",
                     "Фантастика",
                     "Полнометражка",
@@ -590,7 +588,7 @@ public class MovieRepository {
                     7.9,
                     "Джеймс Кэмерон"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Унесённые призраками",
                     "Фэнтези",
                     "Полнометражка",
@@ -599,7 +597,7 @@ public class MovieRepository {
                     8.4,
                     "Хаяо Миядзаки"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Рапунцель: запутанная история",
                     "Фэнтези",
                     "Полнометражка",
@@ -608,7 +606,7 @@ public class MovieRepository {
                     7.9,
                     "Нэйтан Грено"
             ),
-            new MovieRepositorySetting(
+            new Movie(
                     "Чарли и шоколадная фабрика",
                     "Фэнтези",
                     "Полнометражка",
