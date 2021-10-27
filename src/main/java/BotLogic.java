@@ -1,5 +1,5 @@
 import Database.MovieRepository.MovieRepo;
-import Database.UserInfo.CommunicationWithUser;
+import Database.UserInfo.FindUserResponse;
 import Database.UserInfo.UserRepo;
 
 public class BotLogic {
@@ -9,7 +9,7 @@ public class BotLogic {
 
     public String formResponse(long chatId, String text) {
 
-        CommunicationWithUser communicationWithUser = new CommunicationWithUser();
+        FindUserResponse findUserResponse = new FindUserResponse();
 
         switch (text){
             case "/start":
@@ -22,7 +22,7 @@ public class BotLogic {
                 userInfo.setId(chatId);
                 return "ну погнали сначала";
             default:
-                return communicationWithUser.communication(chatId, userInfo, movieRepo, text);
+                return findUserResponse.dialogue(chatId, userInfo, movieRepo, text);
         }
     }
 }

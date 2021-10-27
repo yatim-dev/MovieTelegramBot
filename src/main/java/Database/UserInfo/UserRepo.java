@@ -32,7 +32,7 @@ public class UserRepo {
 
     }
 
-    public Chat getUser(UserRepo userInfo, Long chatId) {
+    public Chat getChat(Long chatId) {
         return userRepo.find(Filters.eq("chatId", chatId)).first();
     }
 
