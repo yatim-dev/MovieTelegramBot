@@ -4,12 +4,13 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class UserRepo {
 
@@ -33,21 +34,17 @@ public class UserRepo {
     }
 
     public Chat getChat(Long chatId) {
-        return userRepo.find(Filters.eq("chatId", chatId)).first();
+        return userRepo.find(eq("chatId", chatId)).first();
     }
 
-    public void updateAndAddUser(long chatId) {
-        var chat = userRepo.find(Filters.eq("chatId", chatId)).first();
-        if (chat != null)
-            userRepo.deleteOne(new Document("chatId", chatId));
+    public void updateOrAddUser(long chatId) {
+        userRepo.deleteOne(new Document("chatId", chatId));
         userRepo.insertOne(new Chat(chatId, ChatState.START));
     }
 
     public void update(Chat user)
     {
-        var mongoUser = userRepo.find(Filters.eq("chatId", user.getChatId())).first();
-        if (mongoUser != null)
-            userRepo.deleteOne(new Document("chatId", user.getChatId()));
+        userRepo.deleteOne(new Document("chatId", user.getChatId()));
         userRepo.insertOne(user);
     }
 }
