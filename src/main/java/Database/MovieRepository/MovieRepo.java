@@ -40,7 +40,7 @@ public class MovieRepo {
                 Filters.eq("country", searchCriteria.getCountry()));
         try {
             return MovieRepo.find(filter).first().getTitle();
-        }catch (NullPointerException exception){
+        }catch (Exception exception){
             return "Такого нет...((( Начни поиск сначала /new_round";
         }
 
