@@ -11,11 +11,9 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
-import java.util.Arrays;
-
 public class MovieRepo {
 
-    MongoCollection<Movie> MovieRepo;
+    MongoCollection<Movie> movieRepo;
 
     public MovieRepo(){
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
@@ -28,7 +26,7 @@ public class MovieRepo {
                 )
         );
 
-        MovieRepo =
+        movieRepo =
                 new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("MovieRepository", Movie.class);
@@ -39,8 +37,8 @@ public class MovieRepo {
         var filter = Filters.and(Filters.eq("genre", searchCriteria.getGenre()),
                 Filters.eq("country", searchCriteria.getCountry()));
         try {
-            return MovieRepo.find(filter).first().getTitle();
-        }catch (Exception exception){
+            return movieRepo.find(filter).first().getTitle();
+        }catch (NullPointerException exception){
             return "Такого нет...((( Начни поиск сначала /new_round";
         }
 

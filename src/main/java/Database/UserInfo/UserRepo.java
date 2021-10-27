@@ -36,18 +36,14 @@ public class UserRepo {
         return userRepo.find(Filters.eq("chatId", chatId)).first();
     }
 
-    public void updateAndAddUser(long chatId) {
-        var chat = userRepo.find(Filters.eq("chatId", chatId)).first();
-        if (chat != null)
-            userRepo.deleteOne(new Document("chatId", chatId));
+    public void updateOrAddUser(long chatId) {
+       userRepo.deleteOne(new Document("chatId", chatId));
         userRepo.insertOne(new Chat(chatId, ChatState.START));
     }
 
     public void update(Chat user)
     {
-        var mongoUser = userRepo.find(Filters.eq("chatId", user.getChatId())).first();
-        if (mongoUser != null)
-            userRepo.deleteOne(new Document("chatId", user.getChatId()));
+        userRepo.deleteOne(new Document("chatId", user.getChatId()));
         userRepo.insertOne(user);
     }
 }
