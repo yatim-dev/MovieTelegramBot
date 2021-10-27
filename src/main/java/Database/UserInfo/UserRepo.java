@@ -32,13 +32,13 @@ public class UserRepo {
 
     }
 
-    public Chat getUser(UserRepo userInfo, Long chatId) {
+    public Chat getChat(Long chatId) {
         return userRepo.find(Filters.eq("chatId", chatId)).first();
     }
 
-    public void setId(long chatId) {
-        var user = userRepo.find(Filters.eq("chatId", chatId)).first();
-        if (user != null)
+    public void updateAndAddUser(long chatId) {
+        var chat = userRepo.find(Filters.eq("chatId", chatId)).first();
+        if (chat != null)
             userRepo.deleteOne(new Document("chatId", chatId));
         userRepo.insertOne(new Chat(chatId, ChatState.START));
     }

@@ -2,7 +2,7 @@ package Database.MovieRepository;
 
 public class MovieArray {
 
-    public Movie[] movieRepositoryArray = new Movie[]{
+    public static Movie[] movieRepositoryArray = new Movie[]{
             new Movie(
                     "Унесённые призраками",
                     "Аниме",

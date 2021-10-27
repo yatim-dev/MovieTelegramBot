@@ -1,5 +1,5 @@
 import Database.MovieRepository.MovieRepo;
-import Database.UserInfo.CommunicationWithUser;
+import Database.UserInfo.FindUserResponse;
 import Database.UserInfo.UserRepo;
 
 public class BotLogic {
@@ -9,20 +9,20 @@ public class BotLogic {
 
     public String formResponse(long chatId, String text) {
 
-        CommunicationWithUser communicationWithUser = new CommunicationWithUser();
+        FindUserResponse findUserResponse = new FindUserResponse();
 
         switch (text){
             case "/start":
-                userInfo.setId(chatId);
+                userInfo.updateAndAddUser(chatId);
                 return "Здравствуйте, вы попали к нам в бот, который поможет вам найти фильм на вечер." +
                         " Чтобы узнать больше информации напишите /help, либо введите жанр"; //костыли ебаные
             case "/help":
                 return "Напишите, какой фильм хотите найти";
             case "/new_round":
-                userInfo.setId(chatId);
+                userInfo.updateAndAddUser(chatId);
                 return "ну погнали сначала";
             default:
-                return communicationWithUser.communication(chatId, userInfo, movieRepo, text);
+                return findUserResponse.dialogue(chatId, userInfo, movieRepo, text);
         }
     }
 }
