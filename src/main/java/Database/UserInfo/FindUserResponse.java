@@ -19,7 +19,6 @@ public class FindUserResponse {
                 searchCriteria.setChatState(ChatState.RESULT); //end of search
                 chatInfo.update(searchCriteria);
             case RESULT:
-                chatInfo.update(searchCriteria);
                 return movieRepo.findMovie(searchCriteria);
             default:
                 return "Some exception";
