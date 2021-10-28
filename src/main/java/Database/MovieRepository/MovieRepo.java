@@ -4,12 +4,20 @@ import Database.UserInfo.Chat;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Indexes;
+import com.mongodb.client.model.Sorts;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.conversions.Bson;
+
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Projections.*;
 
 public class MovieRepo {
 
@@ -31,14 +39,18 @@ public class MovieRepo {
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("MovieRepository", Movie.class);
 
+        String resultCreateIndex = movieRepo.createIndex(Indexes.ascending("genre", "country", "title"));
     }
 
-    public String findMovie(Chat searchCriteria){ //////?????
-        var filter = Filters.and(Filters.eq("genre", searchCriteria.getGenre()),
-                Filters.eq("country", searchCriteria.getCountry()));
+    public String findMovie(Chat searchCriteria){
+        Bson filter = and(eq("genre", searchCriteria.getGenre()), eq("country", searchCriteria.getCountry()));
+        Bson sort = Sorts.ascending("title");
+        Bson projection = fields(include("title", "genre"), excludeId());
+        FindIterable<Movie> cursor = movieRepo.find(filter).sort(sort).projection(projection);
+
         try {
-            return movieRepo.find(filter).first().getTitle();
-        }catch (NullPointerException exception){
+            return cursor.first().getTitle();
+        }catch (NullPointerException e){
             return "Такого нет...((( Начни поиск сначала /new_round";
         }
 

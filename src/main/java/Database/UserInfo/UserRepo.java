@@ -38,7 +38,7 @@ public class UserRepo {
 
     public void updateOrAddUser(long chatId) {
        userRepo.deleteOne(new Document("chatId", chatId));
-        userRepo.insertOne(new Chat(chatId, ChatState.START));
+       userRepo.insertOne(new Chat(chatId, ChatState.START));
     }
 
     public void update(Chat user)
