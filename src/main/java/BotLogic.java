@@ -4,7 +4,7 @@ import Database.UserInfo.UserRepo;
 
 public class BotLogic {
 
-    UserRepo userInfo = new UserRepo();
+    UserRepo userRepo = new UserRepo();
     MovieRepo movieRepo = new MovieRepo();
 
     public String formResponse(long chatId, String text) {
@@ -13,16 +13,16 @@ public class BotLogic {
 
         switch (text){
             case "/start":
-                userInfo.updateOrAddUser(chatId);
+                userRepo.updateOrAddUser(chatId);
                 return "Здравствуйте, вы попали к нам в бот, который поможет вам найти фильм на вечер." +
                         " Чтобы узнать больше информации напишите /help, либо введите жанр"; //костыли ебаные
             case "/help":
                 return "Напишите, какой фильм хотите найти";
             case "/new_round":
-                userInfo.updateOrAddUser(chatId);
+                userRepo.updateOrAddUser(chatId);
                 return "ну погнали сначала";
             default:
-                return findUserResponse.dialogue(chatId, userInfo, movieRepo, text);
+                return findUserResponse.dialogue(chatId, userRepo, movieRepo, text);
         }
     }
 }
