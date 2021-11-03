@@ -1,3 +1,5 @@
+import Database.MovieRepository.MovieRepo;
+import Database.UserInfo.UserRepo;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.DefaultAbsSender;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
@@ -13,11 +15,17 @@ import java.util.Random;
 
 class TelegramApi extends TelegramLongPollingBot {
 
-    private BotLogic bot;
+    private final BotLogic bot;
+    private final String telegramBotToken;
+    UserRepo userRepo;
+    MovieRepo movieRepo;
 
-    public TelegramApi(BotLogic bot)
+    public TelegramApi(BotLogic bot, UserRepo userRepo, MovieRepo movieRepo, String telegramBotToken)
     {
         this.bot = bot;
+        this.userRepo = userRepo;
+        this.movieRepo = movieRepo;
+        this.telegramBotToken = telegramBotToken;
     }
 
     @Override
@@ -27,14 +35,14 @@ class TelegramApi extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return System.getenv("TelegramBotToken");
+        return telegramBotToken;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
         var message = update.getMessage();
         var currentChatId = message.getChatId();
-        var response = bot.formResponse(currentChatId, message.getText());
+        var response = bot.formResponse(currentChatId, message.getText(), userRepo, movieRepo);
         sendResponse(currentChatId, response);
     }
 

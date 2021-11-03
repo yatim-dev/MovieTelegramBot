@@ -15,7 +15,7 @@ public class UserRepo {
 
     MongoCollection<Chat> userRepo;
 
-    public UserRepo() {
+    public UserRepo(String mongoUri) {
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
@@ -26,7 +26,7 @@ public class UserRepo {
                 )
         );
 
-        userRepo = new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
+        userRepo = new MongoClient(new MongoClientURI(mongoUri))
                 .getDatabase("TelegramBotBD")
                 .withCodecRegistry(codecRegistry).getCollection("UserInfo", Chat.class);
 
