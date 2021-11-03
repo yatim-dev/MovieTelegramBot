@@ -42,16 +42,16 @@ public class MovieRepo {
         String resultCreateIndex = movieRepo.createIndex(Indexes.ascending("genre", "country", "title"));
     }
 
-    public String findMovie(Chat searchCriteria){
+    public Movie findMovie(Chat searchCriteria){
         Bson filter = and(eq("genre", searchCriteria.getGenre()), eq("country", searchCriteria.getCountry()));
         Bson sort = Sorts.ascending("title");
         Bson projection = fields(include("title", "genre"), excludeId());
         FindIterable<Movie> cursor = movieRepo.find(filter).sort(sort).projection(projection);
 
         try {
-            return cursor.first().getTitle();
+            return cursor.first();
         }catch (NullPointerException e){
-            return "Такого нет...((( Начни поиск сначала /new_round";
+            return null;
         }
 
 

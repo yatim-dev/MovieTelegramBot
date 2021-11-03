@@ -36,14 +36,9 @@ public class UserRepo {
         return userRepo.find(Filters.eq("chatId", chatId)).first();
     }
 
-    public void updateOrAddUser(long chatId) {
-       userRepo.deleteOne(new Document("chatId", chatId));
-       userRepo.insertOne(new Chat(chatId, ChatState.START));
-    }
-
-    public void update(Chat user)
+    public void update(Chat chat)
     {
-        userRepo.deleteOne(new Document("chatId", user.getChatId()));
-        userRepo.insertOne(user);
+        userRepo.deleteOne(new Document("chatId", chat.getChatId()));
+        userRepo.insertOne(chat);
     }
 }

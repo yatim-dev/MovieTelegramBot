@@ -19,7 +19,12 @@ public class FindUserResponse {
                 searchCriteria.setChatState(ChatState.RESULT); //end of search
                 chatInfo.update(searchCriteria);
             case RESULT:
-                return movieRepo.findMovie(searchCriteria);
+                try {
+                    return movieRepo.findMovie(searchCriteria).getTitle();
+                }catch (NullPointerException ex){
+                    return "Такого нет...((( Начни поиск сначала /new_round";
+                }
+
             default:
                 return "Some exception";
 
