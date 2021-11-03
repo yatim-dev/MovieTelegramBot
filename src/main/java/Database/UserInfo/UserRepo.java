@@ -38,6 +38,7 @@ public class UserRepo {
 
     public void update(Chat chat)
     {
+        //userRepo.updateOne(chat, upsert:true);
         userRepo.deleteOne(new Document("chatId", chat.getChatId()));
         userRepo.insertOne(chat);
     }
