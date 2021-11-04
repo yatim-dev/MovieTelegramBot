@@ -38,8 +38,7 @@ public class UserRepo {
         return userRepo.find(Filters.eq("chatId", chatId)).first();
     }
 
-    public void update(Chat chat)
-    {
+    public void update(Chat chat) {
         Bson filter = Filters.eq("chatId", chat.getChatId());
         Bson update =  new Document("$set", chat);
         UpdateOptions options = new UpdateOptions().upsert(true);

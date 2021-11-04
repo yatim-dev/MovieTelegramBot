@@ -13,17 +13,6 @@ public class SearchCriteria {
     public SearchCriteria() {
     }
 
-    public SearchCriteria(ChatState chatState, String currentMessage, String genre, String category, Integer yearOfIssue, String country, Double rating, String director) {
-        this.chatState = chatState;
-        this.currentMessage = currentMessage;
-        this.genre = genre;
-        this.category = category;
-        this.yearOfIssue = yearOfIssue;
-        this.country = country;
-        this.rating = rating;
-        this.director = director;
-    }
-
     public ChatState getChatState() {
         return chatState;
     }

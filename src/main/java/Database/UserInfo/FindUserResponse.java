@@ -7,7 +7,7 @@ public class FindUserResponse {
 
     public String dialogue(Long chatId, UserRepo chatInfo, MovieRepo movieRepo, String text){
         Chat chat = chatInfo.getChat(chatId);
-        switch (chat.searchCriteria.getChatState()){
+        switch (chat.searchCriteria.getChatState()) {
             case START:
                 chat.searchCriteria.setChatState(ChatState.CHOICE_GENRE);
                 chat.searchCriteria.setGenre(text);
@@ -24,10 +24,8 @@ public class FindUserResponse {
                 }catch (NullPointerException ex){
                     return "Такого нет...((( Начни поиск сначала /new_round";
                 }
-
             default:
                 return "Some exception";
-
         }
     }
 }

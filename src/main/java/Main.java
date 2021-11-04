@@ -6,8 +6,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class Main {
     @SneakyThrows
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         UserRepo userRepo = new UserRepo(System.getenv("MONGO_URI"));
         MovieRepo movieRepo = new MovieRepo();
         var bot = new BotLogic();

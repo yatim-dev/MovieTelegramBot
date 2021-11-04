@@ -24,7 +24,7 @@ public class MovieRepo {
 
     MongoCollection<Movie> movieRepo;
 
-    public MovieRepo(){
+    public MovieRepo() {
         CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
                 MongoClientSettings.getDefaultCodecRegistry(),
                 CodecRegistries.fromProviders(PojoCodecProvider.builder()
@@ -43,7 +43,7 @@ public class MovieRepo {
         String resultCreateIndex = movieRepo.createIndex(Indexes.ascending("genre", "country", "title"));
     }
 
-    public Movie findMovie(SearchCriteria searchCriteria){
+    public Movie findMovie(SearchCriteria searchCriteria) {
         Bson filter = and(eq("genre", searchCriteria.getGenre()), eq("country", searchCriteria.getCountry()));
         Bson sort = Sorts.ascending("title");
         FindIterable<Movie> cursor = movieRepo.find(filter).sort(sort);
