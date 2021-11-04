@@ -5,11 +5,13 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.UpdateOptions;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.conversions.Bson;
 
 public class UserRepo {
 
@@ -38,8 +40,9 @@ public class UserRepo {
 
     public void update(Chat chat)
     {
-        //userRepo.updateOne(chat, upsert:true);
-        userRepo.deleteOne(new Document("chatId", chat.getChatId()));
-        userRepo.insertOne(chat);
+        Bson filter = Filters.eq("chatId", chat.getChatId());
+        Bson update =  new Document("$set", chat);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        userRepo.updateOne(filter, update, options);
     }
 }
