@@ -1,6 +1,7 @@
 package Database.MovieRepository;
 
 import Database.UserInfo.Chat;
+import Database.UserInfo.SearchCriteria;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
@@ -42,7 +43,7 @@ public class MovieRepo {
         String resultCreateIndex = movieRepo.createIndex(Indexes.ascending("genre", "country", "title"));
     }
 
-    public Movie findMovie(Chat searchCriteria){
+    public Movie findMovie(SearchCriteria searchCriteria){
         Bson filter = and(eq("genre", searchCriteria.getGenre()), eq("country", searchCriteria.getCountry()));
         Bson sort = Sorts.ascending("title");
         FindIterable<Movie> cursor = movieRepo.find(filter).sort(sort);
