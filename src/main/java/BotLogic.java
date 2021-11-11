@@ -6,10 +6,13 @@ import Database.UserInfo.UserRepo;
 
 public class BotLogic {
 
+    FindUserResponse findUserResponse;
+
+    public BotLogic(FindUserResponse findUserResponse) {
+        this.findUserResponse = findUserResponse;
+    }
+
     public String formResponse(long chatId, String text, UserRepo userRepo, MovieRepo movieRepo) {
-
-        FindUserResponse findUserResponse = new FindUserResponse();
-
         switch (text) {
             case "/start":
                 userRepo.update(new Chat(chatId, ChatState.START));

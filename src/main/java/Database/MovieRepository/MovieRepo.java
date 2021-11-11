@@ -24,22 +24,8 @@ public class MovieRepo {
 
     MongoCollection<Movie> movieRepo;
 
-    public MovieRepo() {
-        CodecRegistry codecRegistry = CodecRegistries.fromRegistries(
-                MongoClientSettings.getDefaultCodecRegistry(),
-                CodecRegistries.fromProviders(PojoCodecProvider.builder()
-                        .register(
-                                ClassModel.builder(Movie.class).enableDiscriminator(true).build()
-                        ).automatic(true)
-                        .build()
-                )
-        );
-
-        movieRepo =
-                new MongoClient(new MongoClientURI(System.getenv("MONGO_URI")))
-                .getDatabase("TelegramBotBD")
-                .withCodecRegistry(codecRegistry).getCollection("MovieRepository", Movie.class);
-
+    public MovieRepo(MongoCollection<Movie> movieRepo) {
+        this.movieRepo = movieRepo;
         String resultCreateIndex = movieRepo.createIndex(Indexes.ascending("genre", "country", "title"));
     }
 
@@ -47,13 +33,6 @@ public class MovieRepo {
         Bson filter = and(eq("genre", searchCriteria.getGenre()), eq("country", searchCriteria.getCountry()));
         Bson sort = Sorts.ascending("title");
         FindIterable<Movie> cursor = movieRepo.find(filter).sort(sort);
-
-        try {
-            return cursor.first();
-        }catch (NullPointerException e){
-            return null;
-        }
-
-
+        return cursor.first();
     }
 }

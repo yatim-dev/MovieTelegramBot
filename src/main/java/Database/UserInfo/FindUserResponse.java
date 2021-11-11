@@ -1,6 +1,5 @@
 package Database.UserInfo;
 
-
 import Database.MovieRepository.MovieRepo;
 
 public class FindUserResponse {
@@ -19,11 +18,7 @@ public class FindUserResponse {
                 chat.searchCriteria.setChatState(ChatState.RESULT); //end of search
                 chatInfo.update(chat);
             case RESULT:
-                try {
-                    return movieRepo.findMovie(chat.searchCriteria).getTitle();
-                }catch (NullPointerException ex){
-                    return null;
-                }
+                return movieRepo.findMovie(chat.searchCriteria).getTitle();
             default:
                 return "Some exception";
         }
