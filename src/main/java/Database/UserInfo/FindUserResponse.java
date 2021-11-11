@@ -22,7 +22,7 @@ public class FindUserResponse {
                 try {
                     return movieRepo.findMovie(chat.searchCriteria).getTitle();
                 }catch (NullPointerException ex){
-                    return "Такого нет...((( Начни поиск сначала /new_round";
+                    return null;
                 }
             default:
                 return "Some exception";

@@ -10,7 +10,7 @@ public class BotLogic {
 
         FindUserResponse findUserResponse = new FindUserResponse();
 
-        switch (text){
+        switch (text) {
             case "/start":
                 userRepo.update(new Chat(chatId, ChatState.START));
                 return "Здравствуйте, вы попали к нам в бот, который поможет вам найти фильм на вечер." +
@@ -21,7 +21,11 @@ public class BotLogic {
                 userRepo.update(new Chat(chatId, ChatState.START));
                 return "ну погнали сначала";
             default:
-                return findUserResponse.dialogue(chatId, userRepo, movieRepo, text);
+                try {
+                    return findUserResponse.dialogue(chatId, userRepo, movieRepo, text);
+                } catch (NullPointerException ex) {
+                    return "Такого нет...((( Начни поиск сначала /new_round";
+                }
         }
     }
 }
