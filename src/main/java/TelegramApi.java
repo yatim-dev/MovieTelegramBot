@@ -8,9 +8,14 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 class TelegramApi extends TelegramLongPollingBot {
@@ -19,6 +24,7 @@ class TelegramApi extends TelegramLongPollingBot {
     private final String telegramBotToken;
     UserRepo userRepo;
     MovieRepo movieRepo;
+    ReplyKeyboardMarkup replyKeyboardMarkup;
 
     public TelegramApi(BotLogic bot, UserRepo userRepo, MovieRepo movieRepo, String telegramBotToken)
     {
@@ -26,6 +32,8 @@ class TelegramApi extends TelegramLongPollingBot {
         this.userRepo = userRepo;
         this.movieRepo = movieRepo;
         this.telegramBotToken = telegramBotToken;
+        this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        getMessage();
     }
 
     @Override
@@ -48,10 +56,26 @@ class TelegramApi extends TelegramLongPollingBot {
 
     @SneakyThrows
     private void sendResponse(Long chatId, String outText) {
-        execute(SendMessage.builder()
-                .chatId(chatId.toString())
-                .text(outText)
-                .build()
-        );
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId.toString());
+        sendMessage.setText(outText);
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        execute(sendMessage);
+    }
+
+    public void getMessage() {
+        List<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow firstRow = new KeyboardRow();
+        KeyboardRow secondRow = new KeyboardRow();
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
+        var firstButtonsNameArray = new String[]{"Жанр", "Год", "Категория"};
+        var secondButtonsNameArray = new String[]{"Страна", "Режиссер", "Рейтинг"};
+        firstRow.addAll(Arrays.stream(firstButtonsNameArray).toList());
+        secondRow.addAll(Arrays.stream(secondButtonsNameArray).toList());
+        keyboard.add(firstRow);
+        keyboard.add(secondRow);
+        replyKeyboardMarkup.setKeyboard(keyboard);
     }
 }

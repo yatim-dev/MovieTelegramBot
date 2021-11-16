@@ -1,3 +1,4 @@
+
 package Database.UserInfo;
 
 import Database.MovieRepository.MovieRepo;
@@ -24,5 +25,3 @@ public class FindUserResponse {
         }
     }
 }
-
-

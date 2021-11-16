@@ -1,8 +1,6 @@
+
 import Database.MovieRepository.MovieRepo;
-import Database.UserInfo.Chat;
-import Database.UserInfo.ChatState;
-import Database.UserInfo.FindUserResponse;
-import Database.UserInfo.UserRepo;
+import Database.UserInfo.*;
 
 public class BotLogic {
 
@@ -17,7 +15,7 @@ public class BotLogic {
             case "/start":
                 userRepo.update(new Chat(chatId, ChatState.START));
                 return "Здравствуйте, вы попали к нам в бот, который поможет вам найти фильм на вечер." +
-                        " Чтобы узнать больше информации напишите /help, либо введите жанр";
+                        " Чтобы узнать больше информации напишите /help";
             case "/help":
                 return "Напишите, какой фильм хотите найти";
             case "/new_round":
