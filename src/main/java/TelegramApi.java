@@ -70,13 +70,17 @@ class TelegramApi extends TelegramLongPollingBot {
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow firstRow = new KeyboardRow();
         KeyboardRow secondRow = new KeyboardRow();
+
         replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setSelective(true);
         replyKeyboardMarkup.setOneTimeKeyboard(false);
+
         var firstButtonsNameArray = new String[]{"Жанр", "Год", "Категория"};
         var secondButtonsNameArray = new String[]{"Страна", "Режиссер", "Рейтинг"};
+
         firstRow.addAll(Arrays.stream(firstButtonsNameArray).toList());
         secondRow.addAll(Arrays.stream(secondButtonsNameArray).toList());
+
         keyboard.add(firstRow);
         keyboard.add(secondRow);
         replyKeyboardMarkup.setKeyboard(keyboard);

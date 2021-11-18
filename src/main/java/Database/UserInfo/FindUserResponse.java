@@ -12,7 +12,8 @@ public class FindUserResponse {
                 chat.searchCriteria.setChatState(ChatState.CHOICE_GENRE);
                 chat.searchCriteria.setGenre(text);
                 userRepo.update(chat);
-                //break return "Выберите страну";
+                //break;
+                return "Выберите страну";
             case CHOICE_GENRE:
                 chat.searchCriteria.setChatState(ChatState.CHOICE_COUNTRY);
                 chat.searchCriteria.setCountry(text);
@@ -23,5 +24,6 @@ public class FindUserResponse {
             default:
                 return "Some exception";
         }
+
     }
 }

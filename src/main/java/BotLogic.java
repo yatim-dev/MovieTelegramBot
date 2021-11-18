@@ -21,6 +21,8 @@ public class BotLogic {
             case "/new_round":
                 userRepo.update(new Chat(chatId, ChatState.START));
                 return "ну погнали сначала";
+            case "страна":
+
             default:
                 try {
                     return findUserResponse.dialogue(chatId, userRepo, movieRepo, text);
