@@ -1,25 +1,15 @@
 import Database.MovieRepository.MovieRepo;
 import Database.UserInfo.UserRepo;
 import lombok.SneakyThrows;
-import org.telegram.telegrambots.bots.DefaultAbsSender;
-import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 class TelegramApi extends TelegramLongPollingBot {
 
@@ -36,7 +26,7 @@ class TelegramApi extends TelegramLongPollingBot {
         this.movieRepo = movieRepo;
         this.telegramBotToken = telegramBotToken;
         this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        getMessage();
+        createButton();
     }
 
     @Override
@@ -66,7 +56,7 @@ class TelegramApi extends TelegramLongPollingBot {
         execute(sendMessage);
     }
 
-    public void getMessage() {
+    public void createButton() {
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow firstRow = new KeyboardRow();
         KeyboardRow secondRow = new KeyboardRow();
