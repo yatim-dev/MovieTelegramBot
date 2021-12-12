@@ -1,7 +1,7 @@
 package Database.MovieRepository;
 
 public class DataBaseOfMovie {
-
+//пук пук
     public static String[] CategoryArray = new String[]{
             "Фильм", "Сериал", "Короткометражка"
     };
