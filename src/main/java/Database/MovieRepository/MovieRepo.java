@@ -1,24 +1,14 @@
 package Database.MovieRepository;
 
-import Database.UserInfo.Chat;
 import Database.UserInfo.SearchCriteria;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Indexes;
 import com.mongodb.client.model.Sorts;
-import org.bson.codecs.configuration.CodecRegistries;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.ClassModel;
-import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Projections.*;
 
 public class MovieRepo {
 
