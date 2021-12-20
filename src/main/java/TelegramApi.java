@@ -1,5 +1,8 @@
 import Database.MovieRepository.MovieRepo;
 import Database.UserInfo.UserRepo;
+import Recognizers.FirstRecognizer;
+import Recognizers.SecondRecognizer;
+import Recognizers.ThirdRecognizer;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -17,13 +20,23 @@ class TelegramApi extends TelegramLongPollingBot {
     private final String telegramBotToken;
     UserRepo userRepo;
     MovieRepo movieRepo;
+    FirstRecognizer firstRecognizer;
+    SecondRecognizer secondRecognizer;
+    ThirdRecognizer thirdRecognizer;
     ReplyKeyboardMarkup replyKeyboardMarkup;
 
-    public TelegramApi(BotLogic bot, UserRepo userRepo, MovieRepo movieRepo, String telegramBotToken)
+    public TelegramApi(
+            BotLogic bot, UserRepo userRepo, MovieRepo movieRepo,
+            FirstRecognizer firstRecognizer, SecondRecognizer secondRecognizer,
+            ThirdRecognizer thirdRecognizer, String telegramBotToken
+    )
     {
         this.bot = bot;
         this.userRepo = userRepo;
         this.movieRepo = movieRepo;
+        this.firstRecognizer = firstRecognizer;
+        this.secondRecognizer = secondRecognizer;
+        this.thirdRecognizer = thirdRecognizer;
         this.telegramBotToken = telegramBotToken;
         this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
         createButton();
@@ -43,7 +56,11 @@ class TelegramApi extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         var message = update.getMessage();
         var currentChatId = message.getChatId();
-        var response = bot.formResponse(currentChatId, message.getText(), userRepo, movieRepo);
+        var response = bot.formResponse(
+                currentChatId, message.getText(),
+                firstRecognizer, secondRecognizer, thirdRecognizer,
+                userRepo, movieRepo
+        );
         sendResponse(currentChatId, response);
     }
 

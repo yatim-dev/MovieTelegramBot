@@ -3,6 +3,9 @@ import Database.MovieRepository.MovieRepo;
 import Database.UserInfo.Chat;
 import Database.UserInfo.FindUserResponse;
 import Database.UserInfo.UserRepo;
+import Recognizers.FirstRecognizer;
+import Recognizers.SecondRecognizer;
+import Recognizers.ThirdRecognizer;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoClientURI;
@@ -47,8 +50,19 @@ public class Main {
 
                 );
 
+        FirstRecognizer firstRecognizer = new FirstRecognizer();
+        SecondRecognizer secondRecognizer = new SecondRecognizer();
+        ThirdRecognizer thirdRecognizer = new ThirdRecognizer();
         var bot = new BotLogic(new FindUserResponse());
-        var telegramWrapper = new TelegramApi(bot, userRepo, movieRepo, System.getenv("TelegramBotToken"));
+        var telegramWrapper = new TelegramApi(
+                bot,
+                userRepo,
+                movieRepo,
+                firstRecognizer,
+                secondRecognizer,
+                thirdRecognizer,
+                System.getenv("TelegramBotToken")
+        );
         var botsApi = new TelegramBotsApi(DefaultBotSession.class);
         botsApi.registerBot(telegramWrapper);
     }
