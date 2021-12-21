@@ -14,8 +14,7 @@ public class FindUserResponse {
             Long chatId, FirstRecognizer firstRecognizer,
             SecondRecognizer secondRecognizer, ThirdRecognizer thirdRecognizer,
             UserRepo userRepo, MovieRepo movieRepo, String userInput
-    )
-    {
+    ) {
         Chat chat = userRepo.getChat(chatId);
         switch (chat.searchCriteria.getChatState()) {
             case START:

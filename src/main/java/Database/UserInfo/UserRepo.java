@@ -20,7 +20,7 @@ public class UserRepo {
 
     public void update(Chat chat) {
         Bson filter = Filters.eq("chatId", chat.getChatId());
-        Bson update =  new Document("$set", chat);
+        Bson update = new Document("$set", chat);
         UpdateOptions options = new UpdateOptions().upsert(true);
         userRepo.updateOne(filter, update, options);
     }

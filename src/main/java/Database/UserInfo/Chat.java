@@ -9,7 +9,8 @@ public class Chat {
         searchCriteria.setChatState(chatState);
     }
 
-    public Chat(){}
+    public Chat() {
+    }
 
     public long getChatId() {
         return chatId;

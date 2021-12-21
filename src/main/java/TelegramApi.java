@@ -29,8 +29,7 @@ class TelegramApi extends TelegramLongPollingBot {
             BotLogic bot, UserRepo userRepo, MovieRepo movieRepo,
             FirstRecognizer firstRecognizer, SecondRecognizer secondRecognizer,
             ThirdRecognizer thirdRecognizer, String telegramBotToken
-    )
-    {
+    ) {
         this.bot = bot;
         this.userRepo = userRepo;
         this.movieRepo = movieRepo;

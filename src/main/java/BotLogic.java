@@ -17,8 +17,7 @@ public class BotLogic {
             long chatId, String userInput, FirstRecognizer firstRecognizer,
             SecondRecognizer secondRecognizer, ThirdRecognizer thirdRecognizer,
             UserRepo userRepo, MovieRepo movieRepo
-    )
-    {
+    ) {
         switch (userInput) {
             case "/start":
                 userRepo.update(new Chat(chatId, ChatState.START));

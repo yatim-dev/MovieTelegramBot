@@ -2,31 +2,22 @@ package GO;
 
 import Algoritms.LevenshteinAlgorithm;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LevenshteinGo {
 
-    public ArrayList<String> LevenshteinArray = new ArrayList<>();
+    public String LevenshteinWord;
 
-    public LevenshteinGo(List<String> words) {
-        int min = 1000;
-        int a;
-        String str = "";
+    public LevenshteinGo(String[] collection, String word) {
+        int min = Integer.MAX_VALUE;
+        int distance;
+        String str = null;
         LevenshteinAlgorithm levenshtein = new LevenshteinAlgorithm();
-
-        for (String word : words) {
-            for (int i = 0; i < DataBaseOfMovie.All.length; i++) {
-                a = levenshtein.calculateDistance(DataBaseOfMovie.All[i], word);
-                if (min > a) {
-                    min = a;
-                    str = DataBaseOfMovie.All[i];
-                }
+        for (String string : collection) {
+            distance = levenshtein.calculateDistance(string, word);
+            if (min > distance) {
+                min = distance;
+                str = string;
             }
-            min = 1000;
-            LevenshteinArray.add(str);
         }
+        LevenshteinWord = str;
     }
-
-
 }
