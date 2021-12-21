@@ -19,6 +19,8 @@ public class FirstRecognizer {
         for (int j = 0; j < stemmerGoDictionary.stemmerArray.size(); j++)
             if (stemmerPreventive.stemmerWord.equals(stemmerGoDictionary.stemmerArray.get(j)))
                 FirstRecognizerArray.add(collection[j]);
+            //else
+              //  FirstRecognizerArray.add("");
 
         return FirstRecognizerArray;
     }

@@ -19,9 +19,18 @@ public class FindUserResponse {
         switch (chat.searchCriteria.getChatState()) {
             case START:
                 List<String> words = List.of(userInput.split(" "));
-                Recognizer recognizer = new Recognizer(words, firstRecognizer,
-                        secondRecognizer, thirdRecognizer
-                );
+                for(String word : words) {
+                    Recognizer recognizer = new Recognizer(word, firstRecognizer, secondRecognizer, thirdRecognizer);
+
+                    switch (recognizer.indexArray) {
+                        case 0 -> chat.searchCriteria.setCategory(recognizer.output);
+                        case 1 -> chat.searchCriteria.setCountry(recognizer.output);
+                        case 2 -> chat.searchCriteria.setGenre(recognizer.output);
+                        case 3 -> chat.searchCriteria.setDirector(recognizer.output);
+                        case 4 -> chat.searchCriteria.setRating(Double.valueOf(recognizer.output)); //отдельная обработка
+                        case 5 -> chat.searchCriteria.setYearOfIssue(Integer.valueOf(recognizer.output)); //отдельная обработка
+                    }
+                }
 
             case RESULT:
                 return movieRepo.findMovie(chat.searchCriteria).getTitle();
