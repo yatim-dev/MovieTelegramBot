@@ -5,6 +5,7 @@ import Database.MovieRepository.MovieRepo;
 import Recognizers.FirstRecognizer;
 import Recognizers.SecondRecognizer;
 import Recognizers.ThirdRecognizer;
+import Tests.Tests;
 
 import java.util.List;
 
@@ -18,9 +19,12 @@ public class FindUserResponse {
         Chat chat = userRepo.getChat(chatId);
         switch (chat.searchCriteria.getChatState()) {
             case START:
+                Tests test = new Tests();
+                userInput = test.TestsWord;
                 List<String> words = List.of(userInput.split(" "));
                 for(String word : words) {
                     Recognizer recognizer = new Recognizer(word, firstRecognizer, secondRecognizer, thirdRecognizer);
+                    Test.Calculate(recognizer.output);
 
                     switch (recognizer.indexArray) {
                         case 0 -> chat.searchCriteria.setCategory(recognizer.output);
