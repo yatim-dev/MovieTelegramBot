@@ -26,10 +26,12 @@ public class Recognizer {
         dictionary.add(Arrays.Category);
         dictionary.add(Arrays.Country);
         dictionary.add(Arrays.Genre);
-        dictionary.add(Arrays.Director);
+        dictionary.add(Arrays.Lastname);
 
         int index = 0;
         for (String[] array : dictionary) { //одно слово из юзера по всем категориям разными методами инжекс - ячейка
+            specialWordChecker(word);
+            if(output != null) break;
             recognizer1 = firstRecognizer.Search(array, word); //полное совпадение
             recognizer2 = secondRecognizer.Search(array, word);
             recognizer3 = thirdRecognizer.Search(array, word);
@@ -55,6 +57,28 @@ public class Recognizer {
         if (distance > levenshtein.Distance){
             output = levenshtein.LevenshteinWord;
             distance = levenshtein.Distance;
+        }
+    }
+
+    private void specialWordChecker(String word){
+        StemmerGo stemmer = new StemmerGo(word);
+        switch (stemmer.stemmerWord) {
+            case "нов" -> {
+                indexArray = 5;
+                output = "2018";
+            }
+            case "стар" -> {
+                indexArray = 5;
+                output = "1990";
+            }
+            case "хорош" -> {
+                indexArray = 4;
+                output = "8.0";
+            }
+            case "плох" -> {
+                indexArray = 4;
+                output = "4.0";
+            }
         }
     }
 }
