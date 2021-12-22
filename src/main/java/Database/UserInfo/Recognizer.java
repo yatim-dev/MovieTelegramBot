@@ -43,9 +43,10 @@ public class Recognizer {
 
     private void getBestWord(String word, int index, ArrayList<String> recognizer1,
                              ArrayList<String> recognizer2, ArrayList<String> recognizer3) {
-        if(recognizer1.size() == 0) return;
+        if(recognizer1.size() == 0 && !recognizer2.get(index).equals(recognizer3.get(index))) return;
         ArrayList<String> all = new ArrayList<>();
-        all.add(String.valueOf(recognizer1));
+        if(recognizer1.size() != 0)
+            all.add(String.valueOf(recognizer1));
         all.add(String.valueOf(recognizer2));
         all.add(String.valueOf(recognizer3));
         StemmerGo stemmer = new StemmerGo(word);
