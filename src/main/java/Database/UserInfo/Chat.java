@@ -23,18 +23,20 @@ public class Chat {
     }
 
     public String getRealParameter() {
-        StringBuilder request = null;
+        String request = "";
         var parameters = new ArrayList<String>();
+        if (searchCriteria.getYearOfIssue() != null)
+            parameters.add(String.valueOf(searchCriteria.getYearOfIssue().intValue()));
+        if (searchCriteria.getRating() != null)
+            parameters.add(String.valueOf(searchCriteria.getRating().doubleValue()));
         parameters.add(searchCriteria.getGenre());
         parameters.add(searchCriteria.getCountry());
-        parameters.add(searchCriteria.getYearOfIssue().toString());
         parameters.add(searchCriteria.getCategory());
         parameters.add(searchCriteria.getDirector());
-        parameters.add(searchCriteria.getRating().toString());
         for (String parameter : parameters)
             if (parameter != null)
-                request.append(parameter).append(" ");
+                request += parameter + " ";
 
-        return request.toString();
+        return request;
     }
 }
