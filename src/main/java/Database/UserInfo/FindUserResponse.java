@@ -43,8 +43,8 @@ public class FindUserResponse {
                     }
                 }
             case RESULT:
-                KinopoiskApiService kinopoiskApiService = new KinopoiskApiService("419a7163-777a-4f3a-bd32-10b5109fa940",15000);
-                var film1 = kinopoiskApiService.searchByKeyword(chat.getRealParameter(),1);
+                KinopoiskAPI kinopoiskAPI = new KinopoiskAPI();
+                kinopoiskAPI.searchMovie(chat.getRealParameter());
                 //return movieRepo.findMovie(chat.searchCriteria).getTitle();
             default:
                 return "Some exception";

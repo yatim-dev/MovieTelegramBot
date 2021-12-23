@@ -38,7 +38,7 @@ class TelegramApi extends TelegramLongPollingBot {
         this.thirdRecognizer = thirdRecognizer;
         this.telegramBotToken = telegramBotToken;
         this.replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        createButton();
+        //  createButton();
     }
 
     @Override
@@ -72,7 +72,7 @@ class TelegramApi extends TelegramLongPollingBot {
         execute(sendMessage);
     }
 
-    public void createButton() {
+/*    public void createButton() {
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow firstRow = new KeyboardRow();
         KeyboardRow secondRow = new KeyboardRow();
@@ -90,5 +90,5 @@ class TelegramApi extends TelegramLongPollingBot {
         keyboard.add(firstRow);
         keyboard.add(secondRow);
         replyKeyboardMarkup.setKeyboard(keyboard);
-    }
+    }*/
 }

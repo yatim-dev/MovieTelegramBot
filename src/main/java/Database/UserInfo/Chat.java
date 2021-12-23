@@ -22,7 +22,7 @@ public class Chat {
         this.chatId = chatId;
     }
 
-    public String getRealParameter(){
+    public String getRealParameter() {
         StringBuilder request = null;
         var parameters = new ArrayList<String>();
         parameters.add(searchCriteria.getGenre());
