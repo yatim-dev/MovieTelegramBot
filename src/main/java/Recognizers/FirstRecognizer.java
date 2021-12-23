@@ -4,14 +4,13 @@ import Algoritms.Preventive;
 import GO.StemmerGo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FirstRecognizer {
 
     public ArrayList<String> FirstRecognizerArray = new ArrayList<>();
 
-    public ArrayList<String> Search(String[] collection, String userInput) {
+    public ArrayList<String> search(String[] collection, String userInput) {
         StemmerGo stemmerUserInput = new StemmerGo(userInput);
         Preventive preventive = new Preventive(stemmerUserInput.stemmerWord);
         StemmerGo stemmerPreventive = new StemmerGo(preventive.PreventiveWord);

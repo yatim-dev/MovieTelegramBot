@@ -14,9 +14,9 @@ public class Recognizer {
     public int indexArray;
     public String output;
     private int distance = Integer.MAX_VALUE;
-    ArrayList<String> recognizer1 = new ArrayList<>();
-    ArrayList<String> recognizer2 = new ArrayList<>();
-    ArrayList<String> recognizer3 = new ArrayList<>();
+    ArrayList<String> stemmerAndEquals = new ArrayList<>();
+    ArrayList<String> lemmatizerAndLevenshtein = new ArrayList<>();
+    ArrayList<String> lemmatizerAndStemmer = new ArrayList<>();
 
     public Recognizer(
             String word, FirstRecognizer firstRecognizer,
@@ -32,24 +32,24 @@ public class Recognizer {
         for (String[] array : dictionary) { //одно слово из юзера по всем категориям разными методами инжекс - ячейка
             specialWordChecker(word);
             if(output != null) break;
-            recognizer1 = firstRecognizer.Search(array, word); //полное совпадение
-            recognizer2 = secondRecognizer.Search(array, word);
-            recognizer3 = thirdRecognizer.Search(array, word);
-            getBestWord(word, index, recognizer1, recognizer2, recognizer3);
-            recognizer1.clear();
-            recognizer2.clear();
-            recognizer3.clear();
+            stemmerAndEquals = firstRecognizer.search(array, word); //полное совпадение
+            lemmatizerAndLevenshtein = secondRecognizer.search(array, word);
+            lemmatizerAndStemmer = thirdRecognizer.search(array, word);
+            getBestWord(word, index, stemmerAndEquals, lemmatizerAndLevenshtein, lemmatizerAndStemmer);
+            stemmerAndEquals.clear();
+            lemmatizerAndLevenshtein.clear();
+            lemmatizerAndStemmer.clear();
             index++;
         }
     }
 
-    private void getBestWord(String word, int index, ArrayList<String> recognizer1,
-                             ArrayList<String> recognizer2, ArrayList<String> recognizer3) {
-        if(recognizer1.size() == 0) return;
+    private void getBestWord(String word, int index, ArrayList<String> stemmerAndEquals,
+                             ArrayList<String> lemmatizerAndLevenshtein, ArrayList<String> lemmatizerAndStemmer) {
+        if(stemmerAndEquals.size() == 0) return;
         ArrayList<String> all = new ArrayList<>();
-        all.add(recognizer1.get(0));
-        all.add(recognizer2.get(0));
-        all.add(recognizer3.get(0));
+        all.add(stemmerAndEquals.get(0));
+        all.add(lemmatizerAndLevenshtein.get(0));
+        all.add(lemmatizerAndStemmer.get(0));
         StemmerGo stemmer = new StemmerGo(word);
         LevenshteinGo levenshtein = new LevenshteinGo(all, stemmer.stemmerWord);
         indexArray = index;

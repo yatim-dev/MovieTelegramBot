@@ -10,7 +10,7 @@ public class ThirdRecognizer {
 
     public ArrayList<String> ThirdRecognizerArray = new ArrayList<>();
 
-    public ArrayList<String> Search(String[] collection, String userInput) {
+    public ArrayList<String> search(String[] collection, String userInput) {
         StemmerGo stemmerUserInput = new StemmerGo(userInput);
         Preventive preventive = new Preventive(stemmerUserInput.stemmerWord);
         LevenshteinGo levenshteinGo = new LevenshteinGo(collection, preventive.PreventiveWord);

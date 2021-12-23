@@ -9,7 +9,7 @@ public class SecondRecognizer {
 
     public ArrayList<String> SecondRecognizerArray = new ArrayList<>();
 
-    public ArrayList<String> Search(String[] collection, String userInput) {
+    public ArrayList<String> search(String[] collection, String userInput) {
         LemmatizerGo lemmatizerUserInput = new LemmatizerGo(userInput);
         LevenshteinGo levenshteinGo = new LevenshteinGo(collection, lemmatizerUserInput.lemmatizerWord);
         for (String string : collection)

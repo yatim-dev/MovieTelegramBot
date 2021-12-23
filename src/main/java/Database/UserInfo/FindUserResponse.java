@@ -24,14 +24,10 @@ public class FindUserResponse {
         Chat chat = userRepo.getChat(chatId);
         switch (chat.searchCriteria.getChatState()) {
             case START:
-                //Tests test = new Tests();
-                //test.ReadOutput();
-                //test.ReadInput();
-                //userInput = test.GetTestWord();
+                
                 List<String> words = List.of(userInput.split(" "));
                 for(String word : words) {
                     Recognizer recognizer = new Recognizer(word, firstRecognizer, secondRecognizer, thirdRecognizer);
-                  //  test.Calculate(recognizer.output);
 
                     switch (recognizer.indexArray) {
                         case 0 -> chat.searchCriteria.setCategory(recognizer.output);
