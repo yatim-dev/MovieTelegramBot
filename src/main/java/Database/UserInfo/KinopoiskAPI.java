@@ -11,6 +11,7 @@ public class KinopoiskAPI {
     public String searchMovie(String searchString){
         KinopoiskApiService kinopoiskApiService = new KinopoiskApiService(System.getenv("KINOPOISK_TOKEN"),15000);
         List<SearchItem> film = kinopoiskApiService.searchByKeyword(searchString, 1).getOrThrowException().getFilms();
+
         //var nameRu = film.getOrThrowException().getFilms().get(0).component2();
         //var descriptor = film.getOrThrowException().getFilms().get(0).component6();
         //var posterUri = film.getOrThrowException().getFilms().get(0).component12();
