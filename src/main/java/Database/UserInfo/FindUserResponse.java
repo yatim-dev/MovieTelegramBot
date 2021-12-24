@@ -40,8 +40,7 @@ public class FindUserResponse {
                 }
             case RESULT:
                 KinopoiskAPI kinopoiskAPI = new KinopoiskAPI();
-                kinopoiskAPI.searchMovie(chat.getRealParameter());
-                //return movieRepo.findMovie(chat.searchCriteria).getTitle();
+                return kinopoiskAPI.searchMovie(userInput);
             default:
                 return "Some exception";
         }

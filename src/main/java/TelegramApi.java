@@ -68,7 +68,7 @@ class TelegramApi extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
         sendMessage.setText(outText);
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        //sendMessage.setReplyMarkup(replyKeyboardMarkup);
         execute(sendMessage);
     }
 
